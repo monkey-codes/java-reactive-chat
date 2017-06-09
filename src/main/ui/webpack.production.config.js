@@ -13,7 +13,7 @@ loaders.push({
 
 module.exports = {
   entry: [
-    './src/index.jsx',
+    './app/index.jsx',
     './styles/index.scss'
   ],
   output: {
@@ -48,7 +48,7 @@ module.exports = {
       allChunks: true
     }),
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: './app/template.html',
       files: {
         css: ['style.css'],
         js: ['bundle.js'],

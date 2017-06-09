@@ -18,7 +18,7 @@ loaders.push({
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    './src/index.jsx', // your app's entry point
+    './app/index.jsx', // your app's entry point
   ],
   devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',
   output: {
@@ -54,7 +54,7 @@ module.exports = {
     }),
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: './app/template.html',
       files: {
         css: ['style.css'],
         js: [ "bundle.js"],
