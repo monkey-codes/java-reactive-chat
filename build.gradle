@@ -32,3 +32,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-webflux')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+
+task buildUI(type: Exec) {
+    workingDir 'src/main/ui'
+    commandLine 'npm'
+    args = ["run", "build"]
+}
+
+processResources.dependsOn buildUI
