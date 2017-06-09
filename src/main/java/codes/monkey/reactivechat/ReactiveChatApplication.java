@@ -24,6 +24,7 @@ public class ReactiveChatApplication {
         map.put("/websocket/echo", new EchoWebSocketHandler());
         SimpleUrlHandlerMapping simpleUrlHandlerMapping = new SimpleUrlHandlerMapping();
         simpleUrlHandlerMapping.setUrlMap(map);
+        //Without the order things break :-/
         simpleUrlHandlerMapping.setOrder(10);
         return simpleUrlHandlerMapping;
     }
