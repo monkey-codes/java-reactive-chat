@@ -1,3 +1,11 @@
-body {
-  background: #ece7e7;
+//body {
+//  background: #ece7e7;
+//}
+html, body, .full-height {
+  min-height:90vh;
+}
+.chat-messages {
+  min-height: 73vh;
+  max-height: 73vh;
+  overflow-y:scroll;
 }
