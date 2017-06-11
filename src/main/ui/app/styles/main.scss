@@ -5,7 +5,7 @@ html, body, .full-height {
   min-height:90vh;
 }
 .chat-messages {
-  min-height: 73vh;
-  max-height: 73vh;
+  min-height: calc(100vh - 150px);
+  max-height: 78vh;
   overflow-y:scroll;
 }

@@ -1,5 +1,6 @@
 export const DUMMY = 'DUMMY';
 export const MESSAGES_RECEIVED = 'MESSAGES_RECEIVED';
+export const MESSAGE_SENT = 'MESSAGE_SENT';
 
 const names = `Elena	Ward
 Jermaine	Terry
@@ -67,8 +68,23 @@ export function fetchDummy(dummyArg) {
   }
 }
 
-export function fetchMessages() {
+export function fetchDummyMessages() {
   return dispatch => {
     setInterval(() =>  dispatch({type: MESSAGES_RECEIVED, payload: randomPayload() }) , 3000);
+  }
+}
+
+const socket = new WebSocket(`ws://${location.host}/websocket/echo`);
+
+export function fetchMessages() {
+  return dispatch => {
+    socket.onmessage = (message) => dispatch({type: MESSAGES_RECEIVED, payload:[{id:  randomNumber(new Date().getTime()), user: randomName(),  message:message.data }]});
+  }
+}
+
+export function sendMessage(message) {
+  return dispatch => {
+    socket.send(message);
+    dispatch({type: MESSAGE_SENT, payload: message});
   }
 }

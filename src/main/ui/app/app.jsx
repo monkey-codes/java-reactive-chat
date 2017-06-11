@@ -17,7 +17,7 @@ export default class App extends React.Component {
             <OnlineUsers/>
           </div>
           <div className="col-md-9 full-height">
-            <div className="container-fluid full-height">
+            <div className="full-height">
               <Messages/>
               <Chat/>
             </div>
