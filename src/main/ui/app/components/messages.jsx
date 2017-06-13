@@ -15,7 +15,6 @@ class Messages extends Component {
     });
   }
   render() {
-    console.log(window.innerHeight);
     return (
       <div className="list-group chat-messages">
         {this.renderMessages()}

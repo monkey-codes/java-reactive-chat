@@ -5,6 +5,9 @@ import moment from 'moment';
 class MessageTime extends Component {
 
   render() {
+    if(!this.props.time.now){
+      return (<div/>);
+    }
     const timeAgo = moment.duration(this.props.time.now.getTime() - this.props.date);
     return (
       <span>{timeAgo.humanize()} ago</span>
