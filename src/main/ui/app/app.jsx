@@ -1,30 +1,18 @@
 import React from 'react';
-import './styles/index.scss';
-import Nav from './components/nav';
-import OnlineUsers from './components/online_users';
-import Messages from './components/messages';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Chat from './components/chat';
+import Home from './components/home';
+import Login from './components/login';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div className="full-height">
-        <div className="row">
-          <Nav/>
-        </div>
-        <div className="row full-height">
-          <div className="col-md-3 full-height">
-            <OnlineUsers/>
-          </div>
-          <div className="col-md-9 full-height">
+const App = () => {
+  return(
+          <Router>
             <div className="full-height">
-              <Messages/>
-              <Chat/>
+              <Route exact path="/" component={Login}/>
+              <Route exact path="/chat" component={Chat}/>
             </div>
-          </div>
-        </div>
-      </div>
-
-    )
-  }
+          </Router>
+  );
 }
+export default App;

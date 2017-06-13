@@ -1,45 +1,31 @@
 import React from 'react';
-import { sendMessage } from '../actions';
-import { connect } from 'react-redux';
+import '../styles/index.scss';
+import Nav from './nav';
+import OnlineUsers from './online_users';
+import Messages from './messages';
+import MessageInput from './message_input';
+import UserProfile from './user_profile';
 
-class Chat extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {message: ''};
-  }
-
-  onInputChange(message) {
-    this.setState({message});
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-    console.log('on submit');
-    console.log(this.state.message);
-    this.props.sendMessage(this.state.message);
-    this.setState({message:''});
-    return false;
-  }
-
+export default class Chat extends React.Component {
   render() {
     return (
-
-      <div className="container-fluid">
-        <form className="form-horizontal" role="form" onSubmit={this.onSubmit.bind(this)}>
-          <div className="form-group">
-            <div className="input-group">
-              <div className="input-group-addon">Type Message</div>
-              <input type="text"
-                value={this.state.message}
-                onChange={event => this.onInputChange(event.target.value)}
-                className="form-control input-lg"></input>
+      <div className="full-height">
+        <div className="row">
+          <Nav/>
+        </div>
+        <div className="row full-height">
+          <div className="col-md-3 full-height">
+            <UserProfile/>
+            <OnlineUsers/>
+          </div>
+          <div className="col-md-9 full-height">
+            <div className="full-height">
+              <Messages/>
+              <MessageInput/>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
 }
-
-export default connect(null, { sendMessage })(Chat);

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import MessageTime from './message_time';
 
 class Messages extends Component {
   renderMessages() {
     return this.props.messages.map(message => {
       return (
         <div key={message.id} className="list-group-item row">
-          <div className="col-md-2 text-left text-info">{message.user}</div>
+          <div className="col-md-2 text-left text-info">{message.user.alias}</div>
           <div className="col-md-8 text-left">{message.message}</div>
-          <div className="col-md-2 text-right text-info">1 min ago</div>
+          <div className="col-md-2 text-right text-info"><MessageTime date={message.timestamp}/></div>
         </div>
       );
     });

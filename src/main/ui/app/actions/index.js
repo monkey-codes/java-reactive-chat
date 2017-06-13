@@ -78,13 +78,21 @@ const socket = new WebSocket(`ws://${location.host}/websocket/echo`);
 
 export function fetchMessages() {
   return dispatch => {
-    socket.onmessage = (message) => dispatch({type: MESSAGES_RECEIVED, payload:[{id:  randomNumber(new Date().getTime()), user: randomName(),  message:message.data }]});
+    socket.onmessage = (message) =>{
+      console.log(message);
+      dispatch(
+        {
+          type: MESSAGES_RECEIVED,
+          payload:[JSON.parse(message.data)]
+        }
+      );
+    }
   }
 }
 
-export function sendMessage(message) {
+export function sendMessage(user, message) {
   return dispatch => {
-    socket.send(message);
+    socket.send(JSON.stringify({user, message}));
     dispatch({type: MESSAGE_SENT, payload: message});
   }
 }
