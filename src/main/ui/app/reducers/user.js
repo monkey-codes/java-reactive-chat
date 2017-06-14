@@ -1,4 +1,4 @@
-import {CREATE_USER} from '../actions/user';
+import {CREATE_USER} from '../actions';
 
 export default function(state = {alias: 'Jack Sparrow', avatar:'https://robohash.org/Jack.png'}, action){
   switch(action.type){

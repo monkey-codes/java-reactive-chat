@@ -15,7 +15,7 @@ public class Event {
     private static AtomicInteger ID_GENERATOR = new AtomicInteger(0);
 
     public static enum Type {
-        CHAT_MESSAGE
+        CHAT_MESSAGE, CREATE_USER, USER_STATS, USER_LEFT
     }
 
     private Type type;

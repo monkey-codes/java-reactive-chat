@@ -1,7 +1,7 @@
 import React from 'react';
 import Rx from 'rxjs/Rx';
 import '../styles/login.scss';
-import { createUser } from '../actions/user';
+import { createUser } from '../actions';
 import { connect } from 'react-redux';
 const DEFAULT_AVATAR = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
 

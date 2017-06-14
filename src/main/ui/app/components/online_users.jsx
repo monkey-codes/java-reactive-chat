@@ -1,22 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class OnlineUsers extends React.Component {
+class OnlineUsers extends React.Component {
+
+  renderUsers() {
+    return Object.values(this.props.stats).map(userStats =>{
+      return (
+        <li className="list-group-item" key={userStats.user.alias}>
+          <span className="badge">{userStats.messageCount}</span>
+          {userStats.user.alias}
+        </li>
+      );
+    });
+  }
+
   render() {
+    console.log(Object.values(this.props.stats));
     return (
       <ul className="list-group">
-        <li className="list-group-item">
-          <span className="badge">14</span>
-          Cras justo odio
-        </li>
-        <li className="list-group-item">
-          <span className="badge">2</span>
-          Dapibus ac facilisis in
-        </li>
-        <li className="list-group-item">
-          <span className="badge">1</span>
-          Morbi leo risus
-        </li>
+        {this.renderUsers()}
       </ul>
     );
   }
 }
+
+export default connect(({stats}) => ({stats}))(OnlineUsers);
