@@ -66,7 +66,7 @@ public class UserStats {
 
         public void onChatMessage(Event event) {
             lastMessage = event.getTimestamp();
-            messageCount.incrementAndGet();
+            if(CHAT_MESSAGE == event.getType()) messageCount.incrementAndGet();
         }
 
         public Map<String, Object> getUser() {

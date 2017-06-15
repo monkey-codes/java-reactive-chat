@@ -1,5 +1,6 @@
 import {USER_STATS, USER_LEFT, MESSAGES_RECEIVED} from '../actions';
 
+
 export default function(state = {}, action){
   switch(action.type){
     case USER_STATS: return {...action.payload};

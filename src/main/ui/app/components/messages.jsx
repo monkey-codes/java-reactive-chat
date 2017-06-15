@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import MessageTime from './message_time';
+import HumanizedTime from './humanized_time';
+import '../styles/messages.scss';
 
 class Messages extends Component {
   renderMessages() {
     return this.props.messages.map(message => {
       return (
         <div key={message.id} className="list-group-item row">
-          <div className="col-md-2 text-left text-info">{message.user.alias}</div>
+          <div className="col-md-2 text-left text-info">
+            <img src={message.user.avatar}/>{message.user.alias}</div>
           <div className="col-md-8 text-left">{message.message}</div>
-          <div className="col-md-2 text-right text-info"><MessageTime date={message.timestamp}/></div>
+          <div className="col-md-2 text-right text-info"><small><HumanizedTime date={message.timestamp}/></small></div>
         </div>
       );
     });

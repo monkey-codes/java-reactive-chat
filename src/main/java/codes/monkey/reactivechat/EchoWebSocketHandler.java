@@ -76,11 +76,9 @@ public class EchoWebSocketHandler implements WebSocketHandler {
 
         public void onComplete(){
 
-//            lastReceivedEvent.ifPresent(eventPublisher.onNext(new Event(Event.Type.USER_LEFT, new HashMap<>())));
             lastReceivedEvent.ifPresent(event -> {
                 Map<String, Object>  payload = new HashMap<>();
                 payload.put("user", event.getPayload().get("user"));
-                System.out.println(payload);
                 eventPublisher.onNext(new Event(Event.Type.USER_LEFT, payload));
             });
         }

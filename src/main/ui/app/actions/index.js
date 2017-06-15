@@ -1,16 +1,10 @@
-export const DUMMY = 'DUMMY';
 export const MESSAGES_RECEIVED = 'MESSAGES_RECEIVED';
 export const MESSAGE_SENT = 'MESSAGE_SENT';
 export const CREATE_USER = 'CREATE_USER';
 export const USER_STATS = 'USER_STATS';
 export const USER_LEFT = 'USER_LEFT';
 
-export function fetchDummy(dummyArg) {
-  return {
-    type: DUMMY,
-    payload: ["dummy"]
-  }
-}
+
 
 export function fetchDummyMessages() {
   return dispatch => {
@@ -29,7 +23,7 @@ const eventToActionAdapters = {
 export function fetchMessages() {
   return dispatch => {
     socket.onmessage = (msg) =>{
-      console.log(msg);
+      //console.log(msg);
       const event = JSON.parse(msg.data);
       if(eventToActionAdapters[event.type]){
         dispatch(eventToActionAdapters[event.type](event));

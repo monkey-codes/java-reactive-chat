@@ -28,7 +28,7 @@ public class ReactiveChatApplication {
     @Bean
     public Flux<Event> events(UnicastProcessor<Event> eventPublisher) {
         return eventPublisher
-                .replay(1)
+                .replay(50)
                 .autoConnect();
     }
 

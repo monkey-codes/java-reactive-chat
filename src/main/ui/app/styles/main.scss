@@ -1,11 +1,12 @@
 //body {
 //  background: #ece7e7;
 //}
+$alternating-color: #485563;
 html, body, .full-height {
   min-height:90vh;
 }
-.chat-messages {
-  min-height: calc(100vh - 150px);
-  max-height: 78vh;
-  overflow-y:scroll;
-}
+//.chat-messages {
+//  min-height: calc(100vh - 150px);
+//  max-height: 78vh;
+//  overflow-y:scroll;
+//}

@@ -17,7 +17,7 @@ class Login extends React.Component {
   }
 
   updateAvatar(alias){
-    const avatar = alias ? encodeURI(`https://robohash.org/${alias}.png`) : DEFAULT_AVATAR;
+    const avatar = alias ? encodeURI(`https://robohash.org/${alias.toLowerCase()}.png`) : DEFAULT_AVATAR;
     this.setState({ avatar });
 
   }

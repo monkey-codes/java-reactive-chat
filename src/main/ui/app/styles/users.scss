@@ -1,0 +1,18 @@
+.online-users {
+  min-height: calc(100vh - 329px);
+  max-height: 51.5vh;
+  overflow-y:scroll;
+  img {
+    position: relative;
+    top: -10px;
+    top: -10px;
+    height: auto;
+    width: 64px;
+  }
+  div.media-body {
+    vertical-align: middle;
+    span {
+      margin-right:10px;
+    }
+  }
+}
