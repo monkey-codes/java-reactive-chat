@@ -6,13 +6,11 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import { fetchMessages }  from './actions';
-import { createTimer }  from './actions/time';
 import App from './app';
 
 const store = applyMiddleware(reduxThunk)(createStore)(reducers)
 
 fetchMessages()(store.dispatch);
-createTimer()(store.dispatch);
 
 const renderApp = (Component) => {
   render(
