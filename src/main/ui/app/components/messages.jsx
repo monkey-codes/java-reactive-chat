@@ -7,11 +7,23 @@ class Messages extends Component {
   renderMessages() {
     return this.props.messages.map(message => {
       return (
-        <div key={message.id} className="list-group-item row">
-          <div className="col-md-2 text-left text-info">
-            <img src={message.user.avatar}/>{message.user.alias}</div>
-          <div className="col-md-8 text-left">{message.message}</div>
-          <div className="col-md-2 text-right text-info"><small><HumanizedTime date={message.timestamp}/></small></div>
+        <div key={message.id} className="list-group-item">
+          <div className="media">
+            <div className="media-left">
+              <img className="media-object img-circle" src={message.user.avatar}/>
+            </div>
+            <div className="media-body">
+              <div className="row">
+                <div className="col-md-2 text-left text-info">
+                  {message.user.alias}
+                </div>
+                <div className="col-md-8 text-left">{message.message}</div>
+                <div className="col-md-2 text-right text-info">
+                  <small><HumanizedTime date={message.timestamp}/></small>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     });
@@ -27,9 +39,6 @@ class Messages extends Component {
     );
   }
 
-  componentDidUpdate(){
-
-  }
 }
 
 function mapStateToProps(state){
