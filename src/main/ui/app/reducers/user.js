@@ -1,8 +1,8 @@
-import {CREATE_USER} from '../actions';
+import {USER_JOINED} from '../actions';
 
 export default function(state = {}, action){
   switch(action.type){
-    case CREATE_USER: return { ...state, ...action.payload};
+    case USER_JOINED: return { ...state, ...action.payload};
       default: return state;
   }
 }

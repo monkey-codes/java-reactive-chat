@@ -1,13 +1,7 @@
-@import 'variables';
-
 .chat-messages {
   min-height: calc(100vh - 150px);
   max-height: 78vh;
   overflow-y:scroll;
-
-//  .list-group-item:nth-of-type(even) {
-//    background-color: $alternating-color;
-//  }
 
   img {
     position: relative;

@@ -18,7 +18,7 @@ class Messages extends Component {
   }
   render() {
     return (
-      <div className="list-group chat-messages">
+      <div className="list-group chat-messages panel">
         {this.renderMessages()}
         <div ref={(div) => {
           if(div) div.scrollIntoView({block: 'end', behavior: 'smooth'});

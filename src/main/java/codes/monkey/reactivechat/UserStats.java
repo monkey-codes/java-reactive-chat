@@ -25,7 +25,7 @@ public class UserStats {
     public UserStats(Flux<Event> events, UnicastProcessor eventPublisher) {
         this.eventPublisher = eventPublisher;
         events
-                .filter(type(CHAT_MESSAGE, CREATE_USER))
+                .filter(type(CHAT_MESSAGE, USER_JOINED))
                 .subscribe(this::onChatMessage);
         events
                 .filter(type(USER_LEFT))
@@ -33,7 +33,7 @@ public class UserStats {
                 .subscribe(userStatsMap::remove);
 
         events
-                .filter(type(CREATE_USER))
+                .filter(type(USER_JOINED))
                 .subscribe(event -> eventPublisher.onNext(new Event(USER_STATS, new HashMap(userStatsMap))));
     }
 
