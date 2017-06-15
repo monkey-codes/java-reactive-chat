@@ -1,20 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TimeTicker from './components/time_ticker';
 import Chat from './components/chat';
-import Home from './components/home';
 import Login from './components/login';
 import requireUser from './components/require_user';
+import {connectToChatServer} from './actions/chat';
 
-const App = () => {
-  return(
-          <Router>
-            <div className="full-height">
-              <TimeTicker />
-              <Route exact path="/" component={Login}/>
-              <Route exact path="/chat" component={requireUser(Chat)}/>
-            </div>
-          </Router>
-  );
+class App extends Component {
+
+  componentDidMount(){
+    this.props.connectToChatServer(`ws://${location.host}/websocket/echo`);
+  }
+
+  render(){
+    return(
+      <Router>
+        <div className="full-height">
+          <TimeTicker />
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/chat" component={requireUser(Chat)}/>
+        </div>
+      </Router>
+    );
+  }
 }
-export default App;
+
+export default connect(null, {connectToChatServer})(App);

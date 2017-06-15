@@ -4,13 +4,15 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
+import websocket from './middleware/websocket';
 import reducers from './reducers';
-import { fetchMessages }  from './actions';
+import { messageToActionAdapter } from './actions/chat';
 import App from './app';
 
-const store = applyMiddleware(reduxThunk)(createStore)(reducers)
-
-fetchMessages()(store.dispatch);
+const store = applyMiddleware(
+  reduxThunk,
+  websocket({messageToActionAdapter})
+)(createStore)(reducers)
 
 const renderApp = (Component) => {
   render(

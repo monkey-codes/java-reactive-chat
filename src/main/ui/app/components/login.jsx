@@ -1,7 +1,7 @@
 import React from 'react';
 import Rx from 'rxjs/Rx';
 import '../styles/login.scss';
-import { createUser } from '../actions';
+import { joinChat } from '../actions/chat';
 import { connect } from 'react-redux';
 
 const DEFAULT_AVATAR = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
@@ -30,7 +30,7 @@ class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const {alias, avatar} = this.state;
-    this.props.createUser({alias, avatar});
+    this.props.joinChat({alias, avatar});
     this.context.router.history.push('/chat');
     return false;
   }
@@ -71,4 +71,4 @@ class Login extends React.Component {
     );
   }
 }
-export default connect(null,{ createUser })(Login);
+export default connect(null,{ joinChat })(Login);
