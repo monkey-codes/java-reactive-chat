@@ -45,7 +45,7 @@ module.exports = {
     port: PORT,
     host: HOST,
     proxy: {
-      '/websocket/echo': {
+      '/websocket/chat': {
         target: 'ws://127.0.0.1:8080',
         ws: true
       }

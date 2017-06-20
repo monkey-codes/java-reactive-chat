@@ -13,9 +13,6 @@ import java.util.function.Predicate;
 import static codes.monkey.reactivechat.Event.Type.*;
 import static java.util.Arrays.asList;
 
-/**
- * Created by johan on 13/6/17.
- */
 public class UserStats {
 
 
@@ -29,12 +26,19 @@ public class UserStats {
                 .subscribe(this::onChatMessage);
         events
                 .filter(type(USER_LEFT))
-                .map(this::userAlias)
+                .map(Event::getUser)
+                .map(User::getAlias)
                 .subscribe(userStatsMap::remove);
 
         events
                 .filter(type(USER_JOINED))
-                .subscribe(event -> eventPublisher.onNext(new Event(USER_STATS, new HashMap(userStatsMap))));
+                .map(event -> Event.type(USER_STATS)
+                        .withPayload()
+                        .systemUser()
+                        .property("stats", new HashMap<>(userStatsMap))
+                        .build()
+                )
+                .subscribe(eventPublisher::onNext);
     }
 
     private static Predicate<Event> type(Type... types){
@@ -42,25 +46,17 @@ public class UserStats {
     }
 
     private void onChatMessage(Event event) {
-        String alias = userAlias(event);
-        Stats stats = userStatsMap.computeIfAbsent(alias, s -> new Stats(getUser(event)));
+        String alias = event.getUser().getAlias();
+        Stats stats = userStatsMap.computeIfAbsent(alias, s -> new Stats(event.getUser()));
         stats.onChatMessage(event);
     }
 
-    private Map<String, Object> getUser(Event event) {
-        return (Map<String, Object>) event.getPayload().get("user");
-    }
-
-    private String userAlias(Event event) {
-        return (String) (getUser(event)).get("alias");
-    }
-
     private static class Stats {
-        private Map<String, Object> user;
+        private User user;
         private long lastMessage;
         private AtomicInteger messageCount = new AtomicInteger();
 
-        public Stats(Map<String, Object> user) {
+        public Stats(User user) {
             this.user = user;
         }
 
@@ -69,7 +65,7 @@ public class UserStats {
             if(CHAT_MESSAGE == event.getType()) messageCount.incrementAndGet();
         }
 
-        public Map<String, Object> getUser() {
+        public User getUser() {
             return user;
         }
 

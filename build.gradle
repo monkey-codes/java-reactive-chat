@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.M1'
+        springBootVersion = '2.0.0.M2'
     }
     repositories {
         mavenCentral()
@@ -34,7 +34,19 @@ dependencies {
 }
 
 
-task buildUI(type: Exec) {
+
+task npmDependencies(type: Exec) {
+    workingDir 'src/main/ui'
+    commandLine 'npm'
+    args = ["install"]
+}
+
+task buildUI(type: Exec, dependsOn: npmDependencies) {
+    logger.lifecycle("-" * 100)
+    logger.lifecycle("""
+    THIS BUILD HAS BEEN TESTED ON OSX WITH NPM 4.1.2 AND NODE v7.7.1 AVAILABLE ON THE PATH
+""")
+    logger.lifecycle("-" * 100)
     workingDir 'src/main/ui'
     commandLine 'npm'
     args = ["run", "build"]

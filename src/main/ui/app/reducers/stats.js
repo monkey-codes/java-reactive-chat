@@ -3,7 +3,7 @@ import {USER_STATS, USER_LEFT, MESSAGE_RECEIVED} from '../actions/chat';
 
 export default function(state = {}, action){
   switch(action.type){
-    case USER_STATS: return {...action.payload};
+    case USER_STATS: return {...action.payload.stats};
     case USER_LEFT: return Object.values(state).
           filter(stat => stat.user.alias != action.payload.user.alias).
           reduce((acc, val) => ({...acc, [val.user.alias]: val}), {});

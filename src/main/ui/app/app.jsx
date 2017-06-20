@@ -10,7 +10,7 @@ import {connectToChatServer} from './actions/chat';
 class App extends Component {
 
   componentDidMount(){
-    this.props.connectToChatServer(`ws://${location.host}/websocket/echo`);
+    this.props.connectToChatServer(`ws://${location.host}/websocket/chat`);
   }
 
   render(){
