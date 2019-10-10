@@ -29,11 +29,14 @@ public class ChatSocketHandler implements WebSocketHandler {
     @Override
     public Mono<Void> handle(WebSocketSession session) {
         WebSocketMessageSubscriber subscriber = new WebSocketMessageSubscriber(eventPublisher);
-        session.receive()
+        return session.receive()
                 .map(WebSocketMessage::getPayloadAsText)
                 .map(this::toEvent)
-                .subscribe(subscriber::onNext, subscriber::onError, subscriber::onComplete);
-        return session.send(outputEvents.map(session::textMessage));
+                .doOnNext(subscriber::onNext)
+                .doOnError(subscriber::onError)
+                .doOnComplete(subscriber::onComplete)
+                .zipWith(session.send(outputEvents.map(session::textMessage)))
+                .then();
     }
 
 
