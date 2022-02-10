@@ -18,7 +18,7 @@
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "dependencies": {
     "moment": "^2.18.1",
-    "node-sass": "^4.3.0",
+    "node-sass": "^7.0.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "react-redux": "^5.0.5",
